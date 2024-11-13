@@ -1,4 +1,3 @@
-// src/pages/Home.tsx
 import React, { useEffect, useState } from 'react';
 import axios, { AxiosError } from 'axios';
 
@@ -31,6 +30,7 @@ const Home: React.FC = () => {
         const errorMessage = axios.isAxiosError(err)
           ? (err as AxiosError).response?.data || 'Failed to load tasks'
           : 'An unexpected error occurred';
+        setError(errorMessage); // This was missing in your original code
       }
     };
 
@@ -40,9 +40,8 @@ const Home: React.FC = () => {
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-100 py-6">
       <h1 className="text-3xl font-bold mb-4">All Tasks</h1>
-
-      {error && <p className="text-red-500">{error}</p>}
-
+      {error && <p className="text-red-500">{error}</p>}{' '}
+      {/* Show the error message */}
       <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {tasks.map((task) => (
           <div

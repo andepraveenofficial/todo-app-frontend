@@ -1,18 +1,30 @@
 // src/App.tsx
-import React from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import SignInPage from './pages/SignInPage';
-import SignUpPage from './pages/SignUpPage';
-import Home from './pages/Home';
+import { AuthProvider } from './context/AuthContext';
+import Loading from './pages/Loading';
+import routes from './routes';
 
 const App: React.FC = () => (
-  <Router>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/signin" element={<SignInPage />} />
-      <Route path="/signup" element={<SignUpPage />} />
-    </Routes>
-  </Router>
+  <AuthProvider>
+    <Router>
+      <Suspense fallback={<Loading />}>
+        <Routes>
+          {routes.map(({ path, element, children }, index) => (
+            <Route key={index} path={path} element={element}>
+              {children?.map((child, childIndex) => (
+                <Route
+                  key={childIndex}
+                  path={child.path}
+                  element={child.element}
+                />
+              ))}
+            </Route>
+          ))}
+        </Routes>
+      </Suspense>
+    </Router>
+  </AuthProvider>
 );
 
 export default App;

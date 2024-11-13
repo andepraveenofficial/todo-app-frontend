@@ -13,7 +13,7 @@
 5. Bundler : vite
 6. Backend APIs : TodoApp-backend server
 
-### LIVE : [https://todo-app-frontend-rust.vercel.app/]
+### LIVE : [https://my-todo-app-frontend.netlify.app/]
 
 ### Installation
 

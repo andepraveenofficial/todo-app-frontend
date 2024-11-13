@@ -13,7 +13,7 @@ const SignUpPage = () => {
     e.preventDefault();
     try {
       await signupUser(name, email, password);
-      navigate('/signin');
+      navigate('/auth/signin');
     } catch (err) {
       setError('Signup failed, please check your details.');
     }

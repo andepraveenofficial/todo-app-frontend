@@ -1,6 +1,6 @@
 // src/pages/Home.tsx
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 interface Task {
   id: string;
@@ -18,14 +18,20 @@ const Home: React.FC = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/v1/task', {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        });
+        const response = await axios.get<{ data: Task[] }>(
+          'http://localhost:5000/api/v1/task',
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+          }
+        );
         setTasks(response.data.data);
       } catch (err) {
-        setError('Failed to load tasks');
+        const errorMessage = axios.isAxiosError(err)
+          ? (err as AxiosError).response?.data || 'Failed to load tasks'
+          : 'An unexpected error occurred';
+        setError(errorMessage);
       }
     };
 

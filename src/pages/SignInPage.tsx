@@ -1,7 +1,7 @@
 // src/pages/SignInPage.tsx
 import React, { useState } from 'react';
 import { loginUser } from '../services/auth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const SignInPage = () => {
   const navigate = useNavigate();
@@ -47,7 +47,6 @@ const SignInPage = () => {
               required
             />
           </div>
-
           <div>
             <label
               htmlFor="password"
@@ -64,7 +63,6 @@ const SignInPage = () => {
               required
             />
           </div>
-
           <button
             type="submit"
             className="w-full px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
@@ -72,6 +70,13 @@ const SignInPage = () => {
             Sign In
           </button>
         </form>
+
+        <p className="text-sm text-center text-gray-600">
+          Don’t have an account?{' '}
+          <Link to="/auth/signup" className="text-indigo-600 hover:underline">
+            Sign up here
+          </Link>
+        </p>
       </div>
     </div>
   );

@@ -31,7 +31,6 @@ const Home: React.FC = () => {
         const errorMessage = axios.isAxiosError(err)
           ? (err as AxiosError).response?.data || 'Failed to load tasks'
           : 'An unexpected error occurred';
-        setError(errorMessage);
       }
     };
 

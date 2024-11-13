@@ -1,0 +1,28 @@
+rest-client
+
+# Build output
+dist/
+build/
+out/
+
+# Node modules
+node_modules/
+
+# TypeScript declaration files
+*.d.ts
+
+# Environment files
+.env
+.env.*
+
+# Lock files
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Compiled JavaScript files
+src/**/*.js
+
+# Ignore specific config files
+.eslintrc.js
+tsconfig.json

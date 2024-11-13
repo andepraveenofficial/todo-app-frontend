@@ -11,7 +11,7 @@ interface Task {
   updatedAt: string;
 }
 
-const Home = () => {
+const Home: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [error, setError] = useState<string | null>(null);
 

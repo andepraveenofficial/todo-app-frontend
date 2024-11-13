@@ -5,8 +5,7 @@ import SignInPage from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
 import Home from './pages/Home';
 
-
-const App:React.FC = () => (
+const App: React.FC = () => (
   <Router>
     <Routes>
       <Route path="/" element={<Home />} />

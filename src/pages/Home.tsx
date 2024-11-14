@@ -28,9 +28,11 @@ const Home: React.FC = () => {
         setTasks(response.data.data);
       } catch (err) {
         const errorMessage = axios.isAxiosError(err)
-          ? (err as AxiosError).response?.data || 'Failed to load tasks'
+          ? typeof err.response?.data === 'string'
+            ? err.response.data
+            : 'Failed to load tasks'
           : 'An unexpected error occurred';
-        setError(errorMessage); // This was missing in your original code
+        setError(errorMessage);
       }
     };
 

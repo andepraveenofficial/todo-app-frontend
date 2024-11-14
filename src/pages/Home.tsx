@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 
 interface Task {
   id: string;
@@ -28,9 +28,7 @@ const Home: React.FC = () => {
         setTasks(response.data.data);
       } catch (err) {
         const errorMessage = axios.isAxiosError(err)
-          ? typeof err.response?.data === 'string'
-            ? err.response.data
-            : 'Failed to load tasks'
+          ? 'Failed to load tasks'
           : 'An unexpected error occurred';
         setError(errorMessage);
       }

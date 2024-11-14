@@ -3,8 +3,8 @@ import { api } from './api';
 
 export const loginUser = async (email: string, password: string) => {
   const response = await api.post('/auth/signin', { email, password });
-  const { token } = response.data;
-  localStorage.setItem('token', token);
+  const { refreshToken } = response.data;
+  localStorage.setItem('token', refreshToken);
 };
 
 export const signupUser = async (

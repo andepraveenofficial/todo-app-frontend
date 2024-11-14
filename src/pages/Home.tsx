@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { API_URL } from '../services/api';
 
 interface Task {
   id: string;
@@ -17,14 +18,12 @@ const Home: React.FC = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await axios.get<{ data: Task[] }>(
-          'http://localhost:5000/api/v1/task',
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('token')}`,
-            },
-          }
-        );
+        const url = `${API_URL}/task`;
+        const response = await axios.get<{ data: Task[] }>(url, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        });
         setTasks(response.data.data);
       } catch (err) {
         const errorMessage = axios.isAxiosError(err)
